@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_upward" />
     <style>
         body{
             margin: 0;
@@ -67,9 +68,33 @@
             border: none;
             outline: none;
         }
+        .arrow-up{
+            position: fixed;
+            bottom: 60px;
+            right: 50px;
+            width: 70px;
+            height: 70px;
+            background-color: rgb(33,112,231);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+        .arrow-up span{
+            font-size: 50px;
+        }
+        .arrow-up.show{
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
+    <button class="arrow-up">
+        <span class="material-symbols-outlined">
+            arrow_upward
+        </span>
+    </button>
     <div class="btns">
         <div class="container">
             <div class="btns_menu">
@@ -150,6 +175,20 @@
         btnContact.addEventListener('click', function() {
             sectionContact.scrollIntoView({behavior:'smooth', block:'center'});
         })
+
+        const arrowUp = document.querySelector('.arrow-up');
+        document.addEventListener('scroll', function() {
+            //console.log(window.scrollY);
+            if (window.scrollY > 300){
+                arrowUp.classList.add('show');
+            } else {
+                arrowUp.classList.remove('show');
+            }
+            
+        })
+        arrowUp.addEventListener('click', function() { // 추가: 클릭 이벤트
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
     </script>
 </body>
 </html>
